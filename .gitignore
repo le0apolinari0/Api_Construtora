@@ -12,9 +12,12 @@ target/
 .settings
 .springBeans
 .sts4-cache
-.mysql-data
-.performance_schema
 
+
+### mysql-data ###
+.mysql
+.performance_schema
+.sys
 
 ### IntelliJ IDEA ###
 .idea
