@@ -24,6 +24,10 @@ mysql-data/
 *.iws
 *.iml
 *.ipr
+*.mysql-data
+*.mysql
+*.performance_schema
+*.sys
 
 ### NetBeans ###
 /nbproject/private/
