@@ -3,7 +3,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!**/mysql-data/mysql/performance_schema/sys/
+
+mysql-data/
+!**mysql/performance_schema/sys/
 
 ### STS ###
 .apt_generated
