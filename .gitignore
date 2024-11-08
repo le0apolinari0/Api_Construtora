@@ -24,7 +24,7 @@ mysql-data/
 *.iws
 *.iml
 *.ipr
-*.mysql-data
+.mysql-data
 *.mysql
 *.performance_schema
 *.sys
