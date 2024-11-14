@@ -3,10 +3,10 @@ services:
   db:
     image: mysql:8.0
     environment:
-      - MYSQL_ROOT_PASSWORD=Oratoroeu@01
-      - MYSQL_DATABASE=firma_colaboradores
+      - MYSQL_ROOT_PASSWORD=${leblz#$%&*11@}
+      - MYSQL_DATABASE=firma_${leblz#$%&*11@}
       - MYSQL_USER=Reideroma
-      - MYSQL_PASSWORD=Oratoroeu@01
+      - MYSQL_PASSWORD=${leblz#$%&*11@}
     ports:
       - "3307:3306"
     volumes:
@@ -21,8 +21,8 @@ services:
       - db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/firma_colaboradores
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=Oratoroeu@01
+      - SPRING_DATASOURCE_USERNAME=ro${leblz#$%&*11@}ot
+      - SPRING_DATASOURCE_PASSWORD=O${leblz#$%&*11@}
 
 
 

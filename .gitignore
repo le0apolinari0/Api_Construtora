@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+mysql-data/
+!**mysql/performance_schema/sys/
+
 ### STS ###
 .apt_generated
 .classpath
@@ -13,11 +16,18 @@ target/
 .springBeans
 .sts4-cache
 
+
+
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
+.mysql-data
+*.mysql
+*.performance_schema
+*.sys
 
 ### NetBeans ###
 /nbproject/private/
