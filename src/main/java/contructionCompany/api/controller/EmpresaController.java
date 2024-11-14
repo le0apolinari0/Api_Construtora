@@ -1,12 +1,12 @@
 package contructionCompany.api.controller;
 
 import contructionCompany.api.domain.empresa.*;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import contructionCompany.api.repository.EmpresaRepository;
+import contructionCompany.api.service.EmpresaService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -18,57 +18,46 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("empresa")
 public class EmpresaController  {
 
-        @Autowired
-        private EmpresaRepository repository;
+    @Autowired
+    private EmpresaRepository repository;
+    private EmpresaService service;
 
-        @PostMapping
-        @Transactional
-        public ResponseEntity cadastrar(
-                @RequestBody @Valid DadosCadastroEmpresa dados, UriComponentsBuilder uriCadastro) {
-            var empresa = new Empresa(dados);
-            repository.save(empresa);
-
-            var uri = uriCadastro.path("/empresa/{id}").buildAndExpand(empresa.getId()).toUri();
-            return ResponseEntity.created(uri).body( new DadosEmpresaDetalhado(empresa));
+        @GetMapping("/{id}")
+        public ResponseEntity<DadosEmpresaDetalhado> detalharCadastroEmpresa(@PathVariable Long id) {
+            return service.detalharCadastroEmpresa(id)
+                    .map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.notFound().build());
         }
-
-
         @GetMapping
         public ResponseEntity <Page<DadosListagemEmpresa>> listar(
                 @PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
-
             var page = repository.findAllByAtivoTrue(paginacao)
                     .map(DadosListagemEmpresa::new);
-
             return ResponseEntity.ok(page);
 
         }
 
-        @PutMapping
-        @Transactional
-        public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoEmpresa dados){
-            var  empresa = repository.getReferenceById(dados.id());
-            empresa.altualizarInformacoes(dados);
-
-            return  ResponseEntity.ok(new DadosEmpresaDetalhado(empresa));
+        @PostMapping
+        public ResponseEntity<DadosEmpresaDetalhado> cadastrar(
+                @RequestBody @Valid DadosCadastroEmpresa dados,
+                UriComponentsBuilder uriCadastro) {
+            var empresa = service.cadastrar(dados);
+            var uri = uriCadastro.path("/empresa/{id}").buildAndExpand(empresa.id()).toUri();
+            return ResponseEntity.created(uri).body(empresa);
+        }
+        @PutMapping("/{id}")
+        public ResponseEntity<DadosEmpresaDetalhado> atualizar(
+                @PathVariable Long id,
+                @RequestBody @Valid DadosAtualizacaoEmpresa dados) {
+            return ResponseEntity.ok(service.atualizar(id, dados));
         }
 
         @DeleteMapping("/{id}")
         @Transactional
-        public ResponseEntity excluir( @PathVariable Long id){
-            var  empresa = repository.getReferenceById(id);
-            empresa.excluir();
-
+        public ResponseEntity<Void> excluir(@PathVariable Long id) {
+            service.excluir(id);
             return ResponseEntity.noContent().build();
-
-        }
-        @GetMapping("/{id}")
-        public  ResponseEntity detalharCadastroEmpresa(@PathVariable Long id){
-            var empresa = repository.getReferenceById(id);
-
-            return ResponseEntity.ok(new DadosEmpresaDetalhado(empresa));
         }
 
-
-    }
+}
 

@@ -1,5 +1,6 @@
-package contructionCompany.api.domain.empresa;
+package contructionCompany.api.repository;
 
+import contructionCompany.api.domain.empresa.Empresa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

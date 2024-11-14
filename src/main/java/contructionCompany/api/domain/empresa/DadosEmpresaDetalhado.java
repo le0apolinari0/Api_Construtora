@@ -8,9 +8,9 @@ public record DadosEmpresaDetalhado(
         String email,
         String telefone,
         String cnpj,
-        Endereco endereco) {
-
-    public DadosEmpresaDetalhado(Empresa empresa){
+        Endereco endereco
+) {
+    public DadosEmpresaDetalhado(Empresa empresa) {
         this(
                 empresa.getId(),
                 empresa.getNome(),
@@ -18,6 +18,5 @@ public record DadosEmpresaDetalhado(
                 empresa.getTelefone(),
                 empresa.getCnpj(),
                 empresa.getEndereco());
-
     }
 }

@@ -1,5 +1,6 @@
-package contructionCompany.api.domain.usuarioLog;
+package contructionCompany.api.repository;
 
+import contructionCompany.api.domain.usuarioLog.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 

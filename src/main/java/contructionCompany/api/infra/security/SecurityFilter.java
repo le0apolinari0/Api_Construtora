@@ -1,6 +1,6 @@
 package contructionCompany.api.infra.security;
 
-import contructionCompany.api.domain.usuarioLog.UsuarioRepository;
+import contructionCompany.api.repository.UsuarioRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
