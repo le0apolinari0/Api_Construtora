@@ -18,9 +18,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("empresa")
 public class EmpresaController  {
 
+        @Autowired
+        private EmpresaRepository repository;
     @Autowired
-    private EmpresaRepository repository;
-    private EmpresaService service;
+        private EmpresaService service;
 
         @GetMapping("/{id}")
         public ResponseEntity<DadosEmpresaDetalhado> detalharCadastroEmpresa(@PathVariable Long id) {

@@ -3,8 +3,6 @@ package contructionCompany.api.service;
 import contructionCompany.api.domain.empresa.DadosAtualizacaoEmpresa;
 import contructionCompany.api.domain.empresa.DadosCadastroEmpresa;
 import contructionCompany.api.domain.empresa.DadosEmpresaDetalhado;
-import contructionCompany.api.domain.empresa.Empresa;
-import jakarta.transaction.Transactional;
 
 import java.util.Optional;
 
